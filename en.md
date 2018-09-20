@@ -4,7 +4,6 @@
 
 ![](meow.gif)
 
-
 ## Features
 
 - Parses arguments
@@ -15,13 +14,11 @@
 - Makes unhandled rejected promises [fail loudly](https://github.com/sindresorhus/loud-rejection) instead of the default silent fail
 - Sets the process title to the binary name defined in package.json
 
-
 ## Install
 
 ```
 $ npm install meow
 ```
-
 
 ## Usage
 
@@ -35,7 +32,8 @@ $ ./foo-app.js unicorns --rainbow
 const meow = require('meow');
 const foo = require('.');
 
-const cli = meow(`
+const cli = meow(
+  `
 	Usage
 	  $ foo <input>
 
@@ -45,14 +43,16 @@ const cli = meow(`
 	Examples
 	  $ foo unicorns --rainbow
 	  🌈 unicorns 🌈
-`, {
-	flags: {
-		rainbow: {
-			type: 'boolean',
-			alias: 'r'
-		}
-	}
-});
+`,
+  {
+    flags: {
+      rainbow: {
+        type: 'boolean',
+        alias: 'r',
+      },
+    },
+  }
+);
 /*
 {
 	input: ['unicorns'],
@@ -64,19 +64,18 @@ const cli = meow(`
 foo(cli.input[0], cli.flags);
 ```
 
-
 ## API
 
 ### meow(options, [minimistOptions])
 
 Returns an `Object` with:
 
-- `input` *(Array)* - Non-flag arguments
-- `flags` *(Object)* - Flags converted to camelCase
-- `pkg` *(Object)* - The `package.json` object
-- `help` *(string)* - The help text used with `--help`
-- `showHelp([code=2])` *(Function)* - Show the help text and exit with `code`
-- `showVersion()` *(Function)* - Show the version text and exit
+- `input` _(Array)_ - Non-flag arguments
+- `flags` _(Object)_ - Flags converted to camelCase
+- `pkg` _(Object)_ - The `package.json` object
+- `help` _(string)_ - The help text used with `--help`
+- `showHelp([code=2])` _(Function)_ - Show the help text and exit with `code`
+- `showVersion()` _(Function)_ - Show the version text and exit
 
 #### options
 
@@ -107,7 +106,6 @@ flags: {
 	}
 }
 ```
-
 
 ##### description
 
@@ -156,7 +154,7 @@ Default: Closest package.json upwards
 
 package.json as an `Object`.
 
-*You most likely don't need this option.*
+_You most likely don't need this option._
 
 ##### argv
 
@@ -186,7 +184,8 @@ The `default` value set in `boolean` flags take precedence over `booleanDefault`
 Example:
 
 ```js
-const cli = meow(`
+const cli = meow(
+  `
 	Usage
 	  $ foo
 
@@ -198,29 +197,31 @@ const cli = meow(`
 	Examples
 	  $ foo
 	  🌈 unicorns✨🌈
-`, {
-	booleanDefault: undefined,
-	flags: {
-		rainbow: {
-			type: 'boolean',
-			default: true,
-			alias: 'r'
-		},
-		unicorn: {
-			type: 'boolean',
-			default: false,
-			alias: 'u'
-		},
-		cake: {
-			type: 'boolean',
-			alias: 'c'
-		},
-		sparkles: {
-			type: 'boolean',
-			default: true
-		}
-	}
-});
+`,
+  {
+    booleanDefault: undefined,
+    flags: {
+      rainbow: {
+        type: 'boolean',
+        default: true,
+        alias: 'r',
+      },
+      unicorn: {
+        type: 'boolean',
+        default: false,
+        alias: 'u',
+      },
+      cake: {
+        type: 'boolean',
+        alias: 'c',
+      },
+      sparkles: {
+        type: 'boolean',
+        default: true,
+      },
+    },
+  }
+);
 /*
 {
 	flags: {rainbow: true, unicorn: false},
@@ -233,7 +234,6 @@ const cli = meow(`
 
 Meow will make unhandled rejected promises [fail loudly](https://github.com/sindresorhus/loud-rejection) instead of the default silent fail. Meaning you don't have to manually `.catch()` promises used in your CLI.
 
-
 ## Tips
 
 See [`chalk`](https://github.com/chalk/chalk) if you want to colorize the terminal output.
@@ -245,7 +245,6 @@ See [`conf`](https://github.com/sindresorhus/conf) if you need to persist some d
 See [`update-notifier`](https://github.com/yeoman/update-notifier) if you want update notifications.
 
 [More useful CLI utilities…](https://github.com/sindresorhus/awesome-nodejs#command-line-utilities)
-
 
 ## License
 
